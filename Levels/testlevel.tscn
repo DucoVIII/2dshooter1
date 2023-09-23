@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2lvieneyuyko"]
+
+[ext_resource type="Texture2D" uid="uid://c1r37nda811cs" path="res://Assets/TilesBackgrounds/test_tile2.png" id="1_wugsw"]
+[ext_resource type="PackedScene" uid="uid://4nwmk1tpgjq4" path="res://Player/player_mother.tscn" id="2_pv3xs"]
+
+[node name="testlevel" type="Node2D"]
+
+[node name="TestTile2" type="Sprite2D" parent="."]
+position = Vector2(232, 224)
+texture = ExtResource("1_wugsw")
+region_enabled = true
+region_rect = Rect2(0, 0, 384, 384)
+
+[node name="PlayerMother" parent="." instance=ExtResource("2_pv3xs")]
+position = Vector2(32, 248)

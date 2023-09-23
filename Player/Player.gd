@@ -16,18 +16,18 @@ func _process(delta):
 	$FireCooldown.wait_time = playerrof
 	
 	look_at(get_global_mouse_position())
-	var velocity = Vector2.ZERO # The player's movement vector.
-	if Input.is_action_pressed(&"PLAYER_RIGHT"):
-		velocity.x += 1
-	if Input.is_action_pressed(&"PLAYER_LEFT"):
-		velocity.x -= 1
-	if Input.is_action_pressed(&"PLAYER_DOWN"):
-		velocity.y += 1
-	if Input.is_action_pressed(&"PLAYER_UP"):
-		velocity.y -= 1
-	if velocity.length() > 0:
-		velocity = velocity.normalized() * speed
-	position += velocity * delta
+#	var velocity = Vector2.ZERO # The player's movement vector.
+#	if Input.is_action_pressed(&"PLAYER_RIGHT"):
+#		velocity.x += 1
+#	if Input.is_action_pressed(&"PLAYER_LEFT"):
+#		velocity.x -= 1
+#	if Input.is_action_pressed(&"PLAYER_DOWN"):
+#		velocity.y += 1
+#	if Input.is_action_pressed(&"PLAYER_UP"):
+#		velocity.y -= 1
+#	if velocity.length() > 0:
+#		velocity = velocity.normalized() * speed
+#	position += velocity * delta
 #	position = position.clamp(Vector2.ZERO, screen_size)
 	if Input.is_action_just_pressed("PLAYER_SHOOT"):
 		$FireCooldown.start()
