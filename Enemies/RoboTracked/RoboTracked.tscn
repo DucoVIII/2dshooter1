@@ -1,0 +1,138 @@
+[gd_scene load_steps=19 format=3 uid="uid://vyhq4mmst6yl"]
+
+[ext_resource type="Script" path="res://Enemies/RoboTracked/RoboTracked.gd" id="1_rjct3"]
+[ext_resource type="Texture2D" uid="uid://p7koy8po42il" path="res://Enemies/RoboTracked/RoboTracked_Shoot.png" id="1_tybk1"]
+[ext_resource type="Texture2D" uid="uid://bmq4e7pjcpsgt" path="res://Enemies/RoboTracked/RoboTracked_Walk.png" id="2_ld2nq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5u2q4"]
+atlas = ExtResource("1_tybk1")
+region = Rect2(0, 0, 27, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_foh2o"]
+atlas = ExtResource("1_tybk1")
+region = Rect2(27, 0, 27, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7uhva"]
+atlas = ExtResource("1_tybk1")
+region = Rect2(54, 0, 27, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bdhbn"]
+atlas = ExtResource("1_tybk1")
+region = Rect2(81, 0, 27, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbtlc"]
+atlas = ExtResource("2_ld2nq")
+region = Rect2(0, 0, 27, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gr4j3"]
+atlas = ExtResource("2_ld2nq")
+region = Rect2(0, 0, 27, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m186l"]
+atlas = ExtResource("2_ld2nq")
+region = Rect2(27, 0, 27, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6fh1"]
+atlas = ExtResource("2_ld2nq")
+region = Rect2(27, 0, 27, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ylpym"]
+atlas = ExtResource("2_ld2nq")
+region = Rect2(0, 0, 27, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_spoce"]
+atlas = ExtResource("2_ld2nq")
+region = Rect2(27, 0, 27, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1dtfu"]
+atlas = ExtResource("2_ld2nq")
+region = Rect2(54, 0, 27, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dejix"]
+atlas = ExtResource("2_ld2nq")
+region = Rect2(81, 0, 27, 27)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lnbhr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5u2q4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_foh2o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7uhva")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bdhbn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbtlc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gr4j3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m186l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6fh1")
+}],
+"loop": true,
+"name": &"shoot",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ylpym")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_spoce")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1dtfu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dejix")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_axyi0"]
+size = Vector2(16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fffwv"]
+radius = 320.4
+
+[node name="RoboTracked" type="Node2D"]
+script = ExtResource("1_rjct3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -40)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_lnbhr")
+animation = &"shoot"
+frame = 6
+frame_progress = 0.248875
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_axyi0")
+
+[node name="WanderTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="VisionRange" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VisionRange"]
+shape = SubResource("CircleShape2D_fffwv")
+
+[connection signal="timeout" from="WanderTimer" to="." method="_on_wander_timer_timeout"]
+[connection signal="area_shape_entered" from="VisionRange" to="." method="_on_vision_range_area_shape_entered"]
+[connection signal="area_shape_exited" from="VisionRange" to="." method="_on_vision_range_area_shape_exited"]
+[connection signal="body_shape_entered" from="VisionRange" to="." method="_on_vision_range_body_shape_entered"]
+[connection signal="body_shape_exited" from="VisionRange" to="." method="_on_vision_range_body_shape_exited"]
