@@ -13,16 +13,13 @@ func _process(delta):
 		$PlayerCamera.rotation_degrees -= 2
 	if Input.is_action_pressed("ROTATE_RIGHT"):
 		$PlayerCamera.rotation_degrees += 2
-
 	var camera_direction = $PlayerCamera.rotation
 	var velocity = Vector2.ZERO
 	var input_direction = Input.get_vector("PLAYER_LEFT", "PLAYER_RIGHT", "PLAYER_UP", "PLAYER_DOWN")
 	var move_direction = input_direction.rotated(camera_direction)
-	position += move_direction * speed
-	
-	print(input_direction)
-	print(move_direction)
-	
+	velocity = move_direction * speed
+	position += velocity * delta
+
 
 
 #
