@@ -5,8 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://vyhq4mmst6yl" path="res://Enemies/RoboTracked/RoboTracked.tscn" id="3_ar3fh"]
 
 [node name="testlevel" type="Node2D"]
+y_sort_enabled = true
 
 [node name="TestTile2" type="Sprite2D" parent="."]
+z_index = -10
 position = Vector2(232, 224)
 texture = ExtResource("1_wugsw")
 region_enabled = true
@@ -15,5 +17,6 @@ region_rect = Rect2(0, 0, 384, 384)
 [node name="PlayerMother" parent="." instance=ExtResource("2_pv3xs")]
 position = Vector2(32, 248)
 
-[node name="Node2D" parent="." instance=ExtResource("3_ar3fh")]
+[node name="RoboTracked" parent="." instance=ExtResource("3_ar3fh")]
+y_sort_enabled = true
 position = Vector2(-32, 112)

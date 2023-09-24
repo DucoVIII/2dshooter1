@@ -1,8 +1,33 @@
-[gd_scene load_steps=6 format=3 uid="uid://byf4pv818tdcr"]
+[gd_scene load_steps=13 format=3 uid="uid://byf4pv818tdcr"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_57adf"]
 [ext_resource type="Texture2D" uid="uid://hi8sep00blfs" path="res://Assets/Sprites/PlayerModel_Idle_1.png" id="2_dijf1"]
 [ext_resource type="Texture2D" uid="uid://duvb7iqd7v50f" path="res://Assets/Sprites/PlayerModel_Idle_2.png" id="3_io21j"]
+[ext_resource type="Texture2D" uid="uid://cugf0tkhsim3o" path="res://Assets/Sprites/PlayerRightWalk.png" id="4_07wn4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d4n1n"]
+atlas = ExtResource("4_07wn4")
+region = Rect2(0, 0, 27, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dokn0"]
+atlas = ExtResource("4_07wn4")
+region = Rect2(27, 0, 27, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_877c3"]
+atlas = ExtResource("4_07wn4")
+region = Rect2(54, 0, 27, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fki4n"]
+atlas = ExtResource("4_07wn4")
+region = Rect2(81, 0, 27, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w17bt"]
+atlas = ExtResource("4_07wn4")
+region = Rect2(108, 0, 27, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gu5ea"]
+atlas = ExtResource("4_07wn4")
+region = Rect2(135, 0, 27, 27)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_k8x0a"]
 animations = [{
@@ -16,22 +41,43 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d4n1n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dokn0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_877c3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fki4n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w17bt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gu5ea")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wumfp"]
 radius = 16.0
 
 [node name="PlayerRoot" type="Node2D"]
-z_index = 10
 script = ExtResource("1_57adf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-rotation = 1.5708
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_k8x0a")
-animation = &"idle"
-frame = 1
-frame_progress = 0.067446
+animation = &"walk"
+frame = 2
+frame_progress = 0.123513
 
 [node name="Area2D" type="Area2D" parent="."]
 

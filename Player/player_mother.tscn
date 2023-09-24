@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://csqrsk87wtejn" path="res://Player/player_camera.tscn" id="2_v6tr0"]
 
 [node name="PlayerMother" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_xhjy7")
 
 [node name="PlayerRoot" parent="." instance=ExtResource("1_v2ipy")]

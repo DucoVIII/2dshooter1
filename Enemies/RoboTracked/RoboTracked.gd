@@ -2,19 +2,29 @@ extends Node2D
 var playerposition = Globals.playerposition
 var movetarget
 var sleeping
+var speed = Globals.robotrackedSpeed
+var explode = preload("res://Effects/explosion.tscn")
+var health = Globals.robotrackedHealth
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$AnimatedSprite2D.play("walk")
 	movetarget = position
 	sleeping = true
+	health = Globals.robotrackedHealth
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+#	rotation = Globals.playerrotation
 	if sleeping == false:
-		rotation = Globals.playerrotation
+		#hmm dit is niet hoe dit hoort te werken
+		var movetargetwiggle = Vector2(0.1, 0.1)
+		movetargetwiggle.rotated((movetarget - position).angle())
+		if (movetarget - position) < movetargetwiggle:
+			print("move")
+		else:
+			print("shake")
 		if position != movetarget:
 			#move to target
-			var speed = 200
 			var move_direction = movetarget - position
 			move_direction = move_direction.normalized()
 			var velocity = move_direction * speed
@@ -40,6 +50,8 @@ func _on_wander_timer_timeout():
 		movetarget = wandertarget.normalized()
 
 
+
+
 # hitboxes plis merk elkaar op
 func _on_vision_range_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
 	sleeping = false
@@ -55,3 +67,14 @@ func _on_vision_range_area_shape_entered(area_rid, area, area_shape_index, local
 
 func _on_vision_range_area_shape_exited(area_rid, area, area_shape_index, local_shape_index):
 	sleeping = true
+
+
+func _on_hitbox_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
+	health -= DamageCalc.enemy_take_damage(area)
+	print(health)
+	#health -= 1
+	if health <= 0:
+		var explosion_instance = explode.instantiate()
+		explosion_instance.position = get_global_position()
+		get_tree().get_root().add_child(explosion_instance)
+		queue_free()

@@ -38,16 +38,16 @@ rotation = 1.5708
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_gpp50")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="BulletBomb" type="Area2D" parent="."]
 rotation = 1.5708
 collision_layer = 9
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletBomb"]
 position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_kttu5")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="BulletBomb" to="." method="_on_area_2d_area_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

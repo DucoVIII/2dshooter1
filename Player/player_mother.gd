@@ -9,15 +9,15 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_action_pressed("ROTATE_LEFT"):
-		$PlayerCamera.rotation_degrees -= 2
-	if Input.is_action_pressed("ROTATE_RIGHT"):
-		$PlayerCamera.rotation_degrees += 2
-	var camera_direction = $PlayerCamera.rotation
+#	if Input.is_action_pressed("ROTATE_LEFT"):
+#		$PlayerCamera.rotation_degrees -= 2
+#	if Input.is_action_pressed("ROTATE_RIGHT"):
+#		$PlayerCamera.rotation_degrees += 2
+#	var camera_direction = $PlayerCamera.rotation
 	var velocity = Vector2.ZERO
 	var input_direction = Input.get_vector("PLAYER_LEFT", "PLAYER_RIGHT", "PLAYER_UP", "PLAYER_DOWN")
-	var move_direction = input_direction.rotated(camera_direction)
-	velocity = move_direction * speed
+#	var move_direction = input_direction.rotated(camera_direction)
+	velocity = input_direction * speed
 	position += velocity * delta
 	$PlayerRoot.rotation = $PlayerCamera.rotation
 	Globals.playerrotation = $PlayerCamera.rotation

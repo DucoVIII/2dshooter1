@@ -15,7 +15,7 @@ func _process(delta):
 
 
 func _on_area_2d_area_entered(area):
-	if(area.get_collision_layer_bit(2)):
+	#if(area.get_collision_layer_bit(2)):
 		_delete_bullet()
 
 

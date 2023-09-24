@@ -119,6 +119,8 @@ frame = 6
 frame_progress = 0.248875
 
 [node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 5
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("RectangleShape2D_axyi0")
@@ -131,6 +133,7 @@ autostart = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VisionRange"]
 shape = SubResource("CircleShape2D_fffwv")
 
+[connection signal="area_shape_entered" from="Hitbox" to="." method="_on_hitbox_area_shape_entered"]
 [connection signal="timeout" from="WanderTimer" to="." method="_on_wander_timer_timeout"]
 [connection signal="area_shape_entered" from="VisionRange" to="." method="_on_vision_range_area_shape_entered"]
 [connection signal="area_shape_exited" from="VisionRange" to="." method="_on_vision_range_area_shape_exited"]
